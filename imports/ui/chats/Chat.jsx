@@ -27,6 +27,10 @@ export default class Chat extends Component {
             label="View"
             onClick={() => FlowRouter.go(this.props.route, { chatId: this.props.chat._id })}
           />
+          <FlatButton
+            label="Remove"
+            onClick={() => this.props.deleteChat(this.props.chat)}
+          />
         </CardActions>
       </Card>
     );
