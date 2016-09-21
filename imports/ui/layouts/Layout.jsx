@@ -20,7 +20,7 @@ export default function Layout ({content}) {
       <div>
         <AppBar
           title={
-            <a style={titleLinkStyles} href={FlowRouter.path('chats')}>Awesome Chat App</a>
+            <a style={titleLinkStyles} href={FlowRouter.path('enhancedChats')}>Awesome Chat App</a>
           }
           showMenuIconButton={false}
           iconElementRight={<AccountsUIWrapper />}
