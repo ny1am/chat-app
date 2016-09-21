@@ -7,5 +7,6 @@ import { Chats } from '/imports/api/chats.js';
 export default createContainer(() => {
   return {
     chats: Chats.find({}).fetch(),
+    route: 'chat'
   };
 }, Conversations);

@@ -8,6 +8,7 @@ import { Messages } from '/imports/api/messages.js';
 
 export default createContainer(({params}) => {
   let chatId = FlowRouter.current().params.chatId;
+  console.log(FlowRouter.current());
   return {
     chat: Chats.findOne(chatId) || {},
     messages: Messages.find({ chatId }).fetch(),

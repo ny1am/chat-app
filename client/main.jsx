@@ -33,7 +33,6 @@ FlowRouter.route('/', {
 
 const enhancedChatRoutes = FlowRouter.group({
   prefix: '/enhancedChat',
-  name: 'enhancedChatMain',
   triggersEnter: [() => {
     if (!Meteor.userId()) FlowRouter.go('root');
   }],
@@ -60,7 +59,6 @@ enhancedChatRoutes.route('/:chatId', {
 
 const chatRoutes = FlowRouter.group({
   prefix: '/chats',
-  name: 'chat',
   triggersEnter: [() => {
     if (!Meteor.userId()) FlowRouter.go('root');
   }],
@@ -71,7 +69,7 @@ chatRoutes.route('/', {
   name: 'chats',
   action() {
     mount(Layout, {
-      content: (<Conversations route='chat'/>),
+      content: (<Conversations />),
     });
   },
 });
@@ -88,7 +86,7 @@ chatRoutes.route('/:chatId', {
 
 // triggers
 // Login
-Accounts.onLogin(() => FlowRouter.go('enhancedChats'));
+// Accounts.onLogin(() => FlowRouter.go('enhancedChats'));
 // Logout
 Tracker.autorun(() => {
   if (!Meteor.userId()) FlowRouter.go('root');
