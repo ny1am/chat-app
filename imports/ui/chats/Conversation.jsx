@@ -1,5 +1,3 @@
-import { Meteor } from 'meteor/meteor';
-
 import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 
@@ -7,15 +5,11 @@ import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 
-// API
-import { Chats } from '/imports/api/chats.js';
-import { Messages } from '/imports/api/messages.js';
-
 // Components
-import Message from '/imports/ui/Message.jsx';
+import Message from '/imports/ui/messages/Message.jsx';
 
 // Helpers
-import { getTime } from '/imports/ui/getTime.js';
+import { getTime } from '/imports/ui/shared/getTime.js';
 
 export default class Conversation extends Component {
 
@@ -35,7 +29,8 @@ export default class Conversation extends Component {
     return this.props.messages.map((message) => (
       <Message
         key={message._id}
-        message={message} />
+        message={message}
+        currentUser={this.props.currentUser} />
     ));
   }
 
@@ -94,14 +89,6 @@ export default class Conversation extends Component {
 
 Conversation.propTypes = {
   chat: PropTypes.object.isRequired,
-  messages: PropTypes.array.isRequired
+  messages: PropTypes.array.isRequired,
+  currentUser: PropTypes.object.isRequired
 };
-
-export default createContainer(() => {
-  const chatId = FlowRouter.current().params.chatId;
-
-  return {
-    chat: Chats.findOne(chatId) || {},
-    messages: Messages.find({ chatId }).fetch()
-  };
-}, Conversation);

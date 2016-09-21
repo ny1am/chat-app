@@ -6,10 +6,8 @@ import FlatButton from 'material-ui/FlatButton';
 
 import { FlowRouter } from 'meteor/kadira:flow-router';
 
-import { _ } from 'underscore';
-
 // Helpers
-import { getTime } from '/imports/ui/getTime.js';
+import { getTime } from '/imports/ui/shared/getTime.js';
 
 export default class Chat extends Component {
   render() {
@@ -27,7 +25,7 @@ export default class Chat extends Component {
         <CardActions>
           <FlatButton
             label="View"
-            onClick={() => FlowRouter.go('chat', { chatId: this.props.chat._id })}
+            onClick={() => FlowRouter.go(this.props.route, { chatId: this.props.chat._id })}
           />
         </CardActions>
       </Card>
@@ -37,5 +35,6 @@ export default class Chat extends Component {
 
 Chat.propTypes = {
   chat: PropTypes.object.isRequired,
-  deleteChat: PropTypes.func.isRequired
+  deleteChat: PropTypes.func.isRequired,
+  route: PropTypes.string.isRequired
 };

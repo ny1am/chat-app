@@ -24,3 +24,5 @@ kadira:flow-router
 react-meteor-data
 fourseven:scss
 check
+accounts-ui
+accounts-password

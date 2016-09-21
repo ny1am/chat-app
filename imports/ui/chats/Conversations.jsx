@@ -1,11 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 
-// API
-import { Chats } from '/imports/api/chats.js';
-
-import Moment from 'moment';
-
 import Chat from './Chat.jsx';
 
 export default class Conversations extends Component {
@@ -18,6 +13,7 @@ export default class Conversations extends Component {
       <Chat
         key={chat._id}
         chat={chat}
+        route={this.props.route}
         deleteChat={this.deleteChat.bind(this)} />
     ));
   }
@@ -33,10 +29,5 @@ export default class Conversations extends Component {
 
 Conversations.propTypes = {
   chats: PropTypes.array.isRequired,
+  route: PropTypes.string.isRequired
 };
-
-export default createContainer(() => {
-  return {
-    chats: Chats.find({}).fetch(),
-  };
-}, Conversations);
