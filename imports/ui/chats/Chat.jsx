@@ -20,7 +20,7 @@ export default class Chat extends Component {
         <CardHeader
           title={this.props.chat.name}
           subtitle={<p>{this.props.chat.lastMessage.text} <b>{time}</b></p>}
-          avatar={this.props.chat.picture}
+          avatar={this.props.chat.picture || '/images/default-avatar.jpg'}
         />
         <CardActions>
           <FlatButton

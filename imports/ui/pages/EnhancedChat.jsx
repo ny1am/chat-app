@@ -5,6 +5,7 @@ import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
 import Conversations from '/imports/ui/chats/Conversations.jsx';
 import Conversation from '/imports/ui/chats/Conversation.jsx';
+import CreateConversation from '/imports/ui/chats/CreateConversation.jsx';
 
 // API
 import { Chats } from '/imports/api/chats.js';
@@ -15,13 +16,15 @@ export default class EnhancedChat extends Component {
 		const divStyles = {
       display: 'inline-block',
       width: '50%',
-      verticalAlign: 'top'
+      verticalAlign: 'top',
+      position: 'relative'
     };
 		return (
 			<div>
 				<h1>EnhancedChat Page</h1>
 				<div style={divStyles}>
 					<Conversations chats={this.props.chats} route='enhancedChat'/>
+					<CreateConversation />
 				</div>
 				<div style={divStyles}>
 					<Conversation 

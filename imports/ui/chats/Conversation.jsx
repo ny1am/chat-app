@@ -54,7 +54,7 @@ export default class Conversation extends Component {
           <CardHeader
             title={this.props.chat.name}
             subtitle={<b>{time}</b>}
-            avatar={this.props.chat.picture}
+            avatar={this.props.chat.picture || '/images/default-avatar.jpg'}
           />
           <CardText>
             <div className='message-wrapper'>
