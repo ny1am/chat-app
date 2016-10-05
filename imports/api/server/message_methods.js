@@ -40,6 +40,7 @@ Meteor.methods({
 
     const chat = {
       userIds: [this.userId, otherId],
+      name: otherUser.username,
       createdAt: new Date(),
     };
 
