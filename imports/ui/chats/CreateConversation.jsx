@@ -70,7 +70,7 @@ export default class CreateConversation extends Component {
     const actionContainerStyles = {
       position: 'fixed',
       bottom: '0',
-      left: '0',
+      right: '0',
       width: '280px',
       height: '100px',
       textAlign: 'center',
