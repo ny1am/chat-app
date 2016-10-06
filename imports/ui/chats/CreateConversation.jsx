@@ -67,13 +67,9 @@ export default class CreateConversation extends Component {
 
   render() {
     const actionContainerStyles = {
-      position: 'fixed',
-      bottom: '0',
-      right: '0',
-      width: '280px',
-      height: '100px',
-      textAlign: 'center',
-      backgroundColor: 'white',
+      position: 'absolute',
+      bottom: 20,
+      right: 20
     };
 
     const floatingActionButtonStyles = {
