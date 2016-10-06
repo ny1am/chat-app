@@ -57,10 +57,9 @@ export default class CreateConversation extends Component {
           }
           leftAvatar={<Avatar src={user.avatar || '/images/default-avatar.jpg'} />}
           rightIcon={
-            <CommunicationChatBubble
-              onTouchTap={() => this.newChat(user._id) }
-            />
+            <CommunicationChatBubble/>
           }
+          onTouchTap={() => this.newChat(user._id) }
         />
       )
     });
