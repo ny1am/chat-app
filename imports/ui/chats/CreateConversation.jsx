@@ -87,12 +87,6 @@ export default class CreateConversation extends Component {
         primary={true}
         onTouchTap={this.handleModalClose.bind(this)}
       />,
-      <FlatButton
-        label="Submit"
-        primary={true}
-        keyboardFocused={true}
-        onTouchTap={this.handleModalClose.bind(this)}
-      />,
     ];
 
     return (
