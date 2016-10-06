@@ -4,10 +4,6 @@ body, html {
   margin: 0;
 }
 
-.container {
-  margin: 25px;
-}
-
 .message-wrapper {
   margin-bottom: 9px;
 
@@ -88,6 +84,21 @@ body, html {
   .message-send {
 
   }
+}
+
+.chats-holder {
+  display: flex;
+}
+
+.chats-aside {
+  flex-grow: 1;
+  max-width: 400px;
+  box-sizing: border-box;
+  border-right: 5px solid rgb(0, 188, 212);
+}
+
+.chats-container {
+  flex-grow: 2;
 }
 
 

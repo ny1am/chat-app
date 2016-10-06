@@ -13,20 +13,13 @@ import { Messages } from '/imports/api/messages.js';
 
 export default class EnhancedChat extends Component {
 	render() {
-		const divStyles = {
-      display: 'inline-block',
-      width: '50%',
-      verticalAlign: 'top',
-      position: 'relative'
-    };
 		return (
-			<div>
-				<h1>EnhancedChat Page</h1>
-				<div style={divStyles}>
+			<div className="chats-holder">
+				<div className="chats-aside">
 					<Conversations chats={this.props.chats} route='enhancedChat'/>
 					<CreateConversation />
 				</div>
-				<div style={divStyles}>
+				<div className="chats-container">
 					<Conversation 
 						chat={this.props.chat} 
 						messages={this.props.messages} 

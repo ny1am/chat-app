@@ -8,7 +8,6 @@ import { Chats } from '/imports/api/chats.js';
 
 export default class Conversations extends Component {
   deleteChat(chat) {
-    console.log(chat._id);
     Chats.remove(chat._id);
   }
 

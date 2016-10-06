@@ -46,11 +46,16 @@ export default class Conversation extends Component {
       borderTop: '1px solid #dddddd'
     };
 
+    const cardStyle = {
+      boxShadow: 0,
+      borderRadius: 0
+    };
+
     const time = getTime(this.props.chat.lastMessage.timestamp);
 
     return (
       <div className="container">
-        <Card>
+        <Card style={cardStyle}>
           <CardHeader
             title={this.props.chat.name}
             subtitle={<b>{time}</b>}

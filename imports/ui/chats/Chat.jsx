@@ -13,7 +13,9 @@ export default class Chat extends Component {
   render() {
     const time = getTime(this.props.chat.lastMessage.timestamp);
     const cardStyle = {
-      borderRadius: 0
+      borderRadius: 0,
+      boxShadow: 0,
+      borderBottom: '1px solid rgba(0, 0, 0, 0.1)'
     };
     return (
       <Card style={cardStyle}>
