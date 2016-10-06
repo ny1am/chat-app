@@ -95,7 +95,9 @@ body, html {
 
 #login-buttons {
   margin-right: 15px;
-  width: 150px;
+  width: 250px;
+  word-break: break-all;
+  overflow: hidden;
 }
 
 #login-buttons .login-link-and-dropdown-list {
