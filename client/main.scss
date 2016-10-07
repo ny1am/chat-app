@@ -121,14 +121,14 @@ body {
   border-right: 5px solid rgb(0, 188, 212);
   position: relative;
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
 }
 
 .chats-container {
   flex-grow: 2;
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 // Login forms
