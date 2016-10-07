@@ -35,7 +35,9 @@ export default class Conversation extends Component {
   }
 
   componentDidUpdate() {
-    this.refs.textInput.getInputNode().scrollIntoView();
+    if (this.refs.textInput) {
+      this.refs.textInput.getInputNode().scrollIntoView();
+    }
   }
 
   render() {

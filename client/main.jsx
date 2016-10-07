@@ -14,9 +14,6 @@ import Layout from '/imports/ui/layouts/Layout.jsx';
 import Landing from '/imports/ui/pages/Landing.jsx';
 import EnhancedChat from '/imports/ui/pages/EnhancedChat.jsx';
 
-import Conversations from '/imports/ui/pages/Conversations.jsx';
-import Conversation from '/imports/ui/pages/Conversation.jsx';
-
 // Tap Events Hack
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
@@ -52,33 +49,6 @@ enhancedChatRoutes.route('/:chatId', {
   action() {
     mount(Layout, {
       content: (<EnhancedChat chatId={FlowRouter.current().params}/>),
-    });
-  },
-});
-
-
-const chatRoutes = FlowRouter.group({
-  prefix: '/chats',
-  triggersEnter: [() => {
-    if (!Meteor.userId()) FlowRouter.go('root');
-  }],
-});
-
-
-chatRoutes.route('/', {
-  name: 'chats',
-  action() {
-    mount(Layout, {
-      content: (<Conversations />),
-    });
-  },
-});
-
-chatRoutes.route('/:chatId', {
-  name: 'chat',
-  action() {
-    mount(Layout, {
-      content: (<Conversation />),
     });
   },
 });

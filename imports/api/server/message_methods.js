@@ -8,13 +8,16 @@ import { Messages } from '/imports/api/messages.js';
 Meteor.methods({
   newMessage(message) {
     if (!this.userId) {
-      throw new Meteor.Error('not-logged-in', 'Must be logged in to send message.');
+      throw new Meteor.Error('not-logged-in', 'Must be logged in to send a message.');
     }
     check(message, {
       text: String,
       chatId: String,
       type: String,
     });
+    if (Chats.findOne({userIds: this.userId, _id: message.chatId}) === undefined) {
+      throw new Meteor.Error('not-allowed', 'You are not allowed to send a message.');
+    }
 
     const params = {
       timestamp: new Date(),
