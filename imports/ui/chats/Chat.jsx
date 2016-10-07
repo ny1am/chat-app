@@ -11,6 +11,7 @@ import { getTime } from '/imports/ui/shared/getTime.js';
 
 export default class Chat extends Component {
   render() {
+    //todo fix error here
     const time = getTime(this.props.chat.lastMessage.timestamp);
     let cardStyle = {
       borderRadius: 0,

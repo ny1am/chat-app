@@ -36,14 +36,15 @@ Meteor.methods({
   
     check(otherId, String);
     const otherUser = Meteor.users.findOne(otherId);
+    const currentUser = Meteor.users.findOne(this.userId);
 
     if (!otherUser){
       throw new Meteor.Error('user-not-exists', 'Chat\'s user not exists');
     }
 
     const chat = {
-      userIds: [this.userId, otherId],
-      name: otherUser.username,
+      userIds: [currentUser._id, otherUser._id],
+      names: [{userId: currentUser._id, name: otherUser.username}, {userId: otherUser._id, name: currentUser.username}],
       createdAt: new Date(),
     };
 
@@ -54,7 +55,7 @@ Meteor.methods({
       type: 'initial',
       chatId,
       timestamp: new Date(),
-      userId: this.userId,
+      userId: currentUser._id,
     };
 
     Messages.insert(message);
