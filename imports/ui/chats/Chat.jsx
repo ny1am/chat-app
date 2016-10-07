@@ -12,11 +12,14 @@ import { getTime } from '/imports/ui/shared/getTime.js';
 export default class Chat extends Component {
   render() {
     const time = getTime(this.props.chat.lastMessage.timestamp);
-    const cardStyle = {
+    let cardStyle = {
       borderRadius: 0,
       boxShadow: 0,
       borderBottom: '1px solid rgba(0, 0, 0, 0.1)'
     };
+    if (this.props.chat.isActive) {
+      cardStyle.backgroundColor = 'rgba(0, 188, 212, 0.1)';
+    }
     return (
       <Card style={cardStyle}>
         <CardHeader

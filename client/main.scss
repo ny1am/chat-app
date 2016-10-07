@@ -102,6 +102,10 @@ body, html {
   flex-grow: 2;
 }
 
+.chat-active {
+  background-color: rbga(0,0,0,0.05)!important;
+}
+
 
 // Login forms
 

@@ -32,14 +32,21 @@ export default class EnhancedChat extends Component {
 
 export default createContainer(() => {
 	const chatId = FlowRouter.current().params.chatId;
+	const chats = Chats.find({}).fetch();
 	let chat = {};
 	let messages = [];
 	if (chatId) {
 		chat = Chats.findOne(chatId) || {};
 		messages = Messages.find({ chatId }).fetch();
+		//todo change to arrow function
+		chats.map(function(obj) {
+			if (obj._id === chatId) {
+				obj.isActive = true;
+			}
+		});
 	}
 	return {
-		chats: Chats.find({}).fetch(),
+		chats: chats,
 		chat: chat,
 		messages: messages,
 		currentUser: Meteor.user() || {}
