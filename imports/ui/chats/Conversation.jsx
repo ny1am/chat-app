@@ -34,6 +34,10 @@ export default class Conversation extends Component {
     ));
   }
 
+  componentDidUpdate() {
+    this.refs.textInput.getInputNode().scrollIntoView();
+  }
+
   render() {
     if (_.isEmpty(this.props.chat)) return null; // this is important for page reloads
 
