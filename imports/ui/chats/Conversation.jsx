@@ -39,7 +39,9 @@ export default class Conversation extends Component {
 
     const textFieldStyles = {
       display: 'block',
-      marginBottom: 10
+      marginBottom: 10,
+      textAlign: 'left',
+      width: 330
     };
 
     const cardActionsStyles = {
