@@ -15,17 +15,21 @@ export default function Layout ({content}) {
     color: 'white',
   }
 
+  const appBarStyle = {
+    minHeight: 64
+  }
+
   return (
     <MuiThemeProvider>
-      <div>
-        <AppBar
+      <div className='app-container'>
+        <AppBar style={appBarStyle}
           title={
             <a style={titleLinkStyles} href={FlowRouter.path('enhancedChats')}>Awesome Chat App</a>
           }
           showMenuIconButton={false}
           iconElementRight={<AccountsUIWrapper />}
         />
-        <div>{content}</div>
+        <div className='app-content'>{content}</div>
       </div>
     </MuiThemeProvider>
   );
