@@ -33,13 +33,14 @@ export default class EnhancedChat extends Component {
 export default createContainer(() => {
 	const currentUser = Meteor.user() || {};
 	const chatId = FlowRouter.current().params.chatId;
-	const chats = Chats.find({userIds: currentUser._id}).fetch();
+	let chats = [];
 	let chat = {};
 	let messages = [];
 	if (currentUser._id) {
 		if (chatId && Chats.findOne({userIds: currentUser._id, _id: chatId}) === undefined) {
 			throw new Meteor.Error('not-allowed', 'You are not allowed to see the chat.');
 		}
+		chats = Chats.find({userIds: currentUser._id}).fetch();
 		if (chatId) {
 			chat = Chats.findOne({_id: chatId});
 			messages = Messages.find({ chatId }).fetch();
