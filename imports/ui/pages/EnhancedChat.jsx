@@ -41,21 +41,17 @@ export default createContainer(() => {
 			throw new Meteor.Error('not-allowed', 'You are not allowed to see the chat.');
 		}
 		chats = Chats.find({userIds: currentUser._id}).fetch();
-		//todo change to arrow function and probably should be moved to component itself
+		//todo probably should be moved to component itself
 		chats.map(function(obj) {
 			if (obj._id === chatId) {
 				obj.isActive = true;
 			}
-			obj.name = obj.names.filter(function(value) {
-				return value.userId === currentUser._id;
-			})[0].name;
+			obj.name = obj.names.filter(value => (value.userId === currentUser._id))[0].name;
 		});
 		if (chatId) {
 			chat = Chats.findOne({_id: chatId});
 			//todo code duplication here
-			chat.name = chat.names.filter(function(value) {
-				return value.userId === currentUser._id;
-			})[0].name;
+			chat.name = chat.names.filter(value => (value.userId === currentUser._id))[0].name;
 			messages = Messages.find({ chatId }).fetch();
 		}
 	}
