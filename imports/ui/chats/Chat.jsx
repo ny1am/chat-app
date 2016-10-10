@@ -48,7 +48,7 @@ export default class Chat extends Component {
         <CardActions>
           <FlatButton
             label="View"
-            onClick={() => FlowRouter.go(this.props.route, { chatId: this.props.chat._id })}
+            onClick={() => FlowRouter.go('chat', { chatId: this.props.chat._id })}
           />
           <FlatButton
             label="Remove"
@@ -62,6 +62,5 @@ export default class Chat extends Component {
 
 Chat.propTypes = {
   chat: PropTypes.object.isRequired,
-  deleteChat: PropTypes.func.isRequired,
-  route: PropTypes.string.isRequired
+  deleteChat: PropTypes.func.isRequired
 };

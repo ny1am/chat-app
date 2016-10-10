@@ -16,7 +16,7 @@ export default class EnhancedChat extends Component {
 		return (
 			<div className="chats-holder">
 				<div className="chats-aside">
-					<Conversations chats={this.props.chats} route='chat'/>
+					<Conversations chats={this.props.chats}/>
 					<CreateConversation />
 				</div>
 				<div className="chats-container">

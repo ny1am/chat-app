@@ -16,7 +16,6 @@ export default class Conversations extends Component {
       <Chat
         key={chat._id}
         chat={chat}
-        route={this.props.route}
         deleteChat={this.deleteChat.bind(this)} />
     ));
   }
@@ -31,6 +30,5 @@ export default class Conversations extends Component {
 }
 
 Conversations.propTypes = {
-  chats: PropTypes.array.isRequired,
-  route: PropTypes.string.isRequired
+  chats: PropTypes.array.isRequired
 };
