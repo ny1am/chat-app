@@ -10,6 +10,23 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { getTime } from '/imports/ui/shared/getTime.js';
 
 export default class Chat extends Component {
+
+  /*initChat(props) {
+    const currentUser = Meteor.user();
+    if (currentUser && props.chat) {
+      let chat = props.chat;
+      chat.name = chat.names.filter(value => (value.userId === currentUser._id))[0].name;
+    }
+  }
+
+  componentDidMount() {
+    this.initChat(this.props);
+  }
+
+  componentWillUpdate(nextProps) {
+    this.initChat(nextProps);
+  }*/
+
   render() {
     //todo fix error here
     const time = getTime(this.props.chat.lastMessage.timestamp);
