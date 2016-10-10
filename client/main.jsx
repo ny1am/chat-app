@@ -56,7 +56,7 @@ chatRoutes.route('/:chatId', {
 
 // triggers
 // Login
-Accounts.onLogin(() => FlowRouter.go('chats'));
+// Accounts.onLogin(() => FlowRouter.go('chats'));
 // Logout
 Tracker.autorun(() => {
   if (!Meteor.userId()) FlowRouter.go('root');
