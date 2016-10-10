@@ -15,7 +15,7 @@ Meteor.methods({
       chatId: String,
       type: String,
     });
-    if (Chats.findOne({'users.userId': this.userId, _id: message.chatId}) === undefined) {
+    if (Chats.findOne({'users.userId': this.userId, _id: message.chatId, 'users.status': 'success'}) === undefined) {
       throw new Meteor.Error('not-allowed', 'You are not allowed to send a message.');
     }
 
@@ -43,7 +43,18 @@ Meteor.methods({
     }
 
     const chat = {
-      users: [{userId: currentUser._id, name: otherUser.username}, {userId: otherUser._id, name: currentUser.username}],
+      users: [
+        {
+          userId: currentUser._id, 
+          name: otherUser.username,
+          status: 'pending'
+        }, 
+        {
+          userId: otherUser._id, 
+          name: currentUser.username,
+          status: 'none'
+        }
+      ],
       createdAt: new Date(),
     };
 

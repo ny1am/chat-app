@@ -34,6 +34,43 @@ export default class Conversation extends Component {
     ));
   }
 
+  renderActions() {
+    const cardActionsStyles = {
+      borderTop: '1px solid #dddddd'
+    };
+    const textFieldStyles = {
+      display: 'block',
+      marginBottom: 10,
+      textAlign: 'left',
+      width: 330
+    };
+    const chat = this.props.chat;
+    if (chat.getStatus() === 'success') {
+      return (
+        <CardActions
+          style={cardActionsStyles}
+        >
+          <div className='message-input'>
+            <TextField
+              style={textFieldStyles}
+              floatingLabelText="Message"
+              hintText="Type your message here"
+              multiLine={true}
+              rows={1}
+              rowsMax={4}
+              ref="textInput"
+            />
+            <RaisedButton
+              label="Send"
+              primary={true}
+              onClick={this.sendMessage.bind(this)}
+            />
+          </div>
+        </CardActions>
+      );
+    }
+  }
+
   componentDidUpdate() {
     if (this.refs.textInput) {
       this.refs.textInput.getInputNode().scrollIntoView();
@@ -42,17 +79,6 @@ export default class Conversation extends Component {
 
   render() {
     if (_.isEmpty(this.props.chat)) return null; // this is important for page reloads
-
-    const textFieldStyles = {
-      display: 'block',
-      marginBottom: 10,
-      textAlign: 'left',
-      width: 330
-    };
-
-    const cardActionsStyles = {
-      borderTop: '1px solid #dddddd'
-    };
 
     const cardStyle = {
       boxShadow: 0,
@@ -74,26 +100,7 @@ export default class Conversation extends Component {
               {this.renderMessages()}
             </div>
           </CardText>
-          <CardActions
-            style={cardActionsStyles}
-          >
-            <div className='message-input'>
-              <TextField
-                style={textFieldStyles}
-                floatingLabelText="Message"
-                hintText="Type your message here"
-                multiLine={true}
-                rows={1}
-                rowsMax={4}
-                ref="textInput"
-              />
-              <RaisedButton
-                label="Send"
-                primary={true}
-                onClick={this.sendMessage.bind(this)}
-              />
-            </div>
-          </CardActions>
+          {this.renderActions()}
         </Card>
       </div>
     );

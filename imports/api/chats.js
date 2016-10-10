@@ -7,12 +7,13 @@ Collection.helpers({
 		if (currentUser) {
 			return this.users.filter(value => (value.userId === currentUser._id))[0].name;
 		}
+	},
+	getStatus() {
+		const currentUser = Meteor.user();
+		if (currentUser) {
+			return this.users.filter(value => (value.userId === currentUser._id))[0].status;
+		}
 	}
-});
-
-//rename 'names' field to 'users'
-Collection.find({}).fetch().forEach(function(element) {
-	Collection.update({_id: element._id}, {$rename:{"names":"users"}}, false, true);
 });
 
 export const Chats = Collection;
