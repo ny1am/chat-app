@@ -37,10 +37,10 @@ export default createContainer(() => {
 	let chat = {};
 	let messages = [];
 	if (currentUser._id) {
-		if (chatId && Chats.findOne({userIds: currentUser._id, _id: chatId}) === undefined) {
+		if (chatId && Chats.findOne({'users.userId': currentUser._id, _id: chatId}) === undefined) {
 			throw new Meteor.Error('not-allowed', 'You are not allowed to see the chat.');
 		}
-		chats = Chats.find({userIds: currentUser._id}).fetch();
+		chats = Chats.find({'users.userId': currentUser._id}).fetch();
 		chats.map(function(obj) {
 			if (obj._id === chatId) {
 				obj.isActive = true;
