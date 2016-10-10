@@ -24,7 +24,7 @@ export default class Chat extends Component {
     return (
       <Card style={cardStyle}>
         <CardHeader
-          title={this.props.chat.name()}
+          title={this.props.chat.getName()}
           subtitle={<p>{this.props.chat.lastMessage.text} <b>{time}</b></p>}
           avatar={this.props.chat.picture || '/images/default-avatar.jpg'}
         />

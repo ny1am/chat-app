@@ -65,7 +65,7 @@ export default class Conversation extends Component {
       <div className="container">
         <Card style={cardStyle}>
           <CardHeader
-            title={this.props.chat.name()}
+            title={this.props.chat.getName()}
             subtitle={<b>{time}</b>}
             avatar={this.props.chat.picture || '/images/default-avatar.jpg'}
           />
