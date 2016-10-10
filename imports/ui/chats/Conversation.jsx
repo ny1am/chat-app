@@ -3,6 +3,7 @@ import { createContainer } from 'meteor/react-meteor-data';
 
 import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 
 // Components
@@ -67,6 +68,20 @@ export default class Conversation extends Component {
             />
           </div>
         </CardActions>
+      );
+    } else if (chat.getStatus() === 'pending') {
+      return (
+        <div className='invitation-actions'>
+          <p>You have sent chat invitation</p>
+        </div>
+      );
+    } else if (chat.getStatus() === 'none') {
+      return (
+        <div className='invitation-actions'>
+          <p>You have received chat invitation</p>
+          <FlatButton label="Accept" primary={true} />
+          <FlatButton label="Decline" />
+        </div>
       );
     }
   }

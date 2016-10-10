@@ -132,7 +132,15 @@ body {
 }
 
 .chat-pending {
-  color: red;
+  color: blue;
+}
+
+.chat-none {
+  color: green;
+}
+
+.invitation-actions {
+  text-align: center;
 }
 
 // Login forms

@@ -16,6 +16,8 @@ export default class Chat extends Component {
       return <p>{this.props.chat.lastMessage.text} <b>{time}</b></p>;
     } else if (chat.getStatus() === 'pending') {
       return <p className='chat-pending'>Invitation has been sent</p>;
+    } else if (chat.getStatus() === 'none') {
+      return <p className='chat-none'>Invitation has been received</p>;
     }
   }
 
