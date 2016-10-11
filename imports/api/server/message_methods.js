@@ -73,4 +73,20 @@ Meteor.methods({
 
     return chatId;
   },
+  acceptInvitation(chatId) {
+    const userId = this.userId;
+    if (!userId) {
+      throw new Meteor.Error('not-logged-in', 'Must be logged to create a chat.');
+    }
+    check(chatId, String);
+    let chat = Chats.findOne({_id: chatId, 'users.userId': userId, 'users.status': 'none'});
+    //console.log(chat);
+    if (chat) {
+      //todo change to arrow function
+      chat.users.forEach(function(user) {
+        user.status = 'success';
+      });
+      Chats.update(chat._id, chat);
+    }
+  }
 });

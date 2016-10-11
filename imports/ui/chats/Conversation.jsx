@@ -26,6 +26,10 @@ export default class Conversation extends Component {
     this.refs.textInput.setState({isFocused: false, hasValue: false})
   }
 
+  acceptInvitation() {
+    Meteor.call('acceptInvitation', FlowRouter.current().params.chatId);
+  }
+
   renderMessages() {
     return this.props.messages.map((message) => (
       <Message
@@ -79,7 +83,7 @@ export default class Conversation extends Component {
       return (
         <div className='invitation-actions'>
           <p>You have received chat invitation</p>
-          <FlatButton label="Accept" primary={true} />
+          <FlatButton label="Accept" primary={true} onClick={this.acceptInvitation.bind(this)} />
           <FlatButton label="Decline" />
         </div>
       );

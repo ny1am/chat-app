@@ -10,7 +10,9 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { getTime } from '/imports/ui/shared/getTime.js';
 
 export default class Chat extends Component {
-  subtitle() {
+  renderSubtitle() {
+    //todo fix error here
+    const time = getTime(this.props.chat.lastMessage.timestamp);
     const chat = this.props.chat;
     if (chat.getStatus() === 'success') {
       return <p>{this.props.chat.lastMessage.text} <b>{time}</b></p>;
@@ -22,8 +24,6 @@ export default class Chat extends Component {
   }
 
   render() {
-    //todo fix error here
-    const time = getTime(this.props.chat.lastMessage.timestamp);
     let cardStyle = {
       borderRadius: 0,
       boxShadow: 0,
@@ -36,7 +36,7 @@ export default class Chat extends Component {
       <Card style={cardStyle}>
         <CardHeader
           title={this.props.chat.getName()}
-          subtitle={this.subtitle()}
+          subtitle={this.renderSubtitle()}
           avatar={this.props.chat.picture || '/images/default-avatar.jpg'}
         />
         <CardActions>
