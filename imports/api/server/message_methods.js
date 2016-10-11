@@ -42,6 +42,11 @@ Meteor.methods({
       throw new Meteor.Error('user-not-exists', 'Chat\'s user not exists');
     }
 
+    const dbChat = Chats.findOne({$and: [{'users.userId': currentUser._id}, {'users.userId': otherUser._id}]});
+    if (dbChat) {
+      return dbChat._id;
+    }
+
     const chat = {
       users: [
         {

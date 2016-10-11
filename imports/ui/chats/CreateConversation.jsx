@@ -35,12 +35,12 @@ export default class CreateConversation extends Component {
 
     if (chat) {
       this.handleModalClose();
-      return FlowRouter.go('enhancedChat', { chatId: chat._id })
+      return FlowRouter.go('chat', { chatId: chat._id })
     }
 
     Meteor.call('newChat', userId, (err, chatId) => {
       this.handleModalClose();
-      FlowRouter.go('enhancedChat', { chatId })
+      FlowRouter.go('chat', { chatId })
     });
   }
 
