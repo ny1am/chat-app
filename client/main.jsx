@@ -12,7 +12,7 @@ import { mount } from 'react-mounter';
 import Layout from '/imports/ui/layouts/Layout.jsx';
 
 import Landing from '/imports/ui/pages/Landing.jsx';
-import EnhancedChat from '/imports/ui/pages/EnhancedChat.jsx';
+import ChatPage from '/imports/ui/pages/ChatPage.jsx';
 
 // Tap Events Hack
 import injectTapEventPlugin from 'react-tap-event-plugin';
@@ -39,7 +39,7 @@ chatRoutes.route('/', {
   name: 'chats',
   action() {
     mount(Layout, {
-      content: (<EnhancedChat />),
+      content: (<ChatPage />),
     });
   },
 });
@@ -48,7 +48,7 @@ chatRoutes.route('/:chatId', {
   name: 'chat',
   action() {
     mount(Layout, {
-      content: (<EnhancedChat chatId={FlowRouter.current().params}/>),
+      content: (<ChatPage chatId={FlowRouter.current().params}/>),
     });
   },
 });

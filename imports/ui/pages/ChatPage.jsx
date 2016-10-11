@@ -11,7 +11,7 @@ import CreateConversation from '/imports/ui/chats/CreateConversation.jsx';
 import { Chats } from '/imports/api/chats.js';
 import { Messages } from '/imports/api/messages.js';
 
-export default class EnhancedChat extends Component {
+export default class ChatPage extends Component {
 	render() {
 		return (
 			<div className="chats-holder">
@@ -57,4 +57,4 @@ export default createContainer(() => {
 		messages: messages,
 		currentUser: currentUser
 	};
-}, EnhancedChat);
+}, ChatPage);
