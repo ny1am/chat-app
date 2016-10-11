@@ -20,6 +20,8 @@ export default class Chat extends Component {
       return <p className='chat-pending'>Invitation has been sent</p>;
     } else if (chat.getStatus() === 'none') {
       return <p className='chat-none'>Invitation has been received</p>;
+    }  else if (chat.getStatus() === 'declined') {
+      return <p className='chat-declined'>You have declined the invitation</p>;
     }
   }
 

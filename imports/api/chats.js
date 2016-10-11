@@ -5,13 +5,13 @@ Collection.helpers({
 	getName() {
 		const currentUser = Meteor.user();
 		if (currentUser) {
-			return this.users.filter(value => (value.userId === currentUser._id))[0].name;
+			return this.users.filter(user => (user.userId === currentUser._id))[0].name;
 		}
 	},
 	getStatus() {
 		const currentUser = Meteor.user();
 		if (currentUser) {
-			return this.users.filter(value => (value.userId === currentUser._id))[0].status;
+			return this.users.filter(user => (user.userId === currentUser._id))[0].status;
 		}
 	}
 });
