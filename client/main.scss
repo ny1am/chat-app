@@ -109,6 +109,15 @@ body {
   }
 }
 
+.message-initial {
+  text-align: center;
+  font-size: 18px;
+}
+
+.message-initial-info {
+  font-size: 14px;
+}
+
 .chats-holder {
   display: flex;
   flex-grow: 1;
