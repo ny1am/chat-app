@@ -41,7 +41,7 @@ export default createContainer(() => {
 			FlowRouter.go('chat');
 		}
 		chats = Chats.find({'users.userId': currentUser._id}).fetch();
-		chats.map(function(obj) {
+		chats.map(obj => {
 			if (obj._id === chatId) {
 				obj.isActive = true;
 			}
