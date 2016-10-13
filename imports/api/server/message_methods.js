@@ -44,6 +44,14 @@ Meteor.methods({
 
     const dbChat = Chats.findOne({$and: [{'users.userId': currentUser._id}, {'users.userId': otherUser._id}]});
     if (dbChat) {
+      //todo duplication
+      const userId = this.userId;
+      dbChat.users.forEach(function(user) {
+        if (user.userId === userId) {
+          user.hidden = false;
+        }
+      });
+      Chats.update(dbChat._id, dbChat);
       return dbChat._id;
     }
 
@@ -52,12 +60,14 @@ Meteor.methods({
         {
           userId: currentUser._id, 
           name: otherUser.username,
-          status: 'pending'
+          status: 'pending',
+          hidden: false
         }, 
         {
           userId: otherUser._id, 
           name: currentUser.username,
-          status: 'none'
+          status: 'none',
+          hidden: false
         }
       ],
       createdAt: new Date(),
@@ -105,5 +115,20 @@ Meteor.methods({
       });
       Chats.update(chat._id, chat);
     }
-  }
+  },
+  hideChat(chatId) {
+    const userId = this.userId;
+    if (!userId) {
+      throw new Meteor.Error('not-logged-in', 'Must be logged to create a chat.');
+    }
+    check(chatId, String);
+    let chat = Chats.findOne({_id: chatId, 'users.userId': userId});
+    chat.users.forEach(function(user) {
+      if (user.userId === userId) {
+        user.hidden = true;
+      }
+    });
+    console.log(chat);
+    Chats.update(chat._id, chat);
+  },
 });

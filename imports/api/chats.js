@@ -16,4 +16,13 @@ Collection.helpers({
 	}
 });
 
+Collection.find({'users.hidden': {$exists: false}}).fetch().forEach(function(chat) {
+	if (chat.users) {
+		chat.users.forEach(function(user) {
+			user.hidden = false;
+		});
+		Collection.update(chat._id, chat);
+	}
+});
+
 export const Chats = Collection;

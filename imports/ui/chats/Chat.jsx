@@ -10,6 +10,11 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { getTime } from '/imports/ui/shared/getTime.js';
 
 export default class Chat extends Component {
+
+  hideChat(chatId) {
+    Meteor.call('hideChat', chatId);
+  }
+
   renderSubtitle() {
     //todo fix error here
     const time = getTime(this.props.chat.lastMessage.timestamp);
@@ -45,6 +50,10 @@ export default class Chat extends Component {
           <FlatButton
             label="View"
             onClick={() => FlowRouter.go('chat', { chatId: this.props.chat._id })}
+          />
+          <FlatButton
+            label="Hide"
+            onClick={() => this.hideChat(this.props.chat._id)}
           />
         </CardActions>
       </Card>

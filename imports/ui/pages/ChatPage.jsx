@@ -40,7 +40,8 @@ export default createContainer(() => {
 		if (chatId && Chats.findOne({'users.userId': currentUser._id, _id: chatId}) === undefined) {
 			FlowRouter.go('chat');
 		}
-		chats = Chats.find({'users.userId': currentUser._id}).fetch();
+		//todo possible issue here
+		chats = Chats.find({users: {$elemMatch: {$and: [{userId: currentUser._id}, {hidden: false}]}}}).fetch();
 		chats.map(obj => {
 			if (obj._id === chatId) {
 				obj.isActive = true;
