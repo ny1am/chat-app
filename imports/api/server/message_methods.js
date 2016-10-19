@@ -128,7 +128,6 @@ Meteor.methods({
         user.hidden = true;
       }
     });
-    console.log(chat);
     Chats.update(chat._id, chat);
   },
 });

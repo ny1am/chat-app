@@ -12,8 +12,8 @@ export default class Conversations extends Component {
     return this.props.chats.map((chat) => (
       <Chat
         key={chat._id}
-        chat={chat} />
-
+        chat={chat} 
+        isActive={chat._id === this.props.activeChatId} />
     ));
   }
 
@@ -27,5 +27,6 @@ export default class Conversations extends Component {
 }
 
 Conversations.propTypes = {
-  chats: PropTypes.array.isRequired
+  chats: PropTypes.array.isRequired,
+  activeChatId: PropTypes.string
 };

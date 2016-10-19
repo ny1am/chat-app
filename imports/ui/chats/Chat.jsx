@@ -13,6 +13,8 @@ export default class Chat extends Component {
 
   hideChat(chatId) {
     Meteor.call('hideChat', chatId);
+    //todo: fix this
+    return FlowRouter.go('chat');
   }
 
   renderSubtitle() {
@@ -36,7 +38,7 @@ export default class Chat extends Component {
       boxShadow: 0,
       borderBottom: '1px solid rgba(0, 0, 0, 0.1)'
     };
-    if (this.props.chat.isActive) {
+    if (this.props.isActive) {
       cardStyle.backgroundColor = 'rgba(0, 188, 212, 0.1)';
     }
     return (
@@ -62,5 +64,6 @@ export default class Chat extends Component {
 }
 
 Chat.propTypes = {
-  chat: PropTypes.object.isRequired
+  chat: PropTypes.object.isRequired,
+  isActive: PropTypes.bool.isRequired
 };

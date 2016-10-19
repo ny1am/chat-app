@@ -16,7 +16,7 @@ export default class ChatPage extends Component {
 		return (
 			<div className="chats-holder">
 				<div className="chats-aside">
-					<Conversations chats={this.props.chats}/>
+					<Conversations chats={this.props.chats} activeChatId={this.props.activeChatId}/>
 					<CreateConversation />
 				</div>
 				<div className="chats-container">
@@ -40,13 +40,7 @@ export default createContainer(() => {
 		if (chatId && Chats.findOne({'users.userId': currentUser._id, _id: chatId}) === undefined) {
 			FlowRouter.go('chat');
 		}
-		//todo possible issue here
 		chats = Chats.find({users: {$elemMatch: {$and: [{userId: currentUser._id}, {hidden: false}]}}}).fetch();
-		chats.map(obj => {
-			if (obj._id === chatId) {
-				obj.isActive = true;
-			}
-		});
 		if (chatId) {
 			chat = Chats.findOne({_id: chatId});
 			messages = Messages.find({ chatId }).fetch();
@@ -56,6 +50,7 @@ export default createContainer(() => {
 		chats: chats,
 		chat: chat,
 		messages: messages,
+		activeChatId: chatId,
 		currentUser: currentUser
 	};
 }, ChatPage);
