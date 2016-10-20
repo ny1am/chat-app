@@ -35,6 +35,11 @@ export default class Conversation extends Component {
     return FlowRouter.go('chat');
   }
 
+  hideChat(chatId) {
+    Meteor.call('hideChat', chatId);
+    return FlowRouter.go('chat');
+  }
+
   renderMessages() {
     return this.props.messages.map((message) => (
       <Message
@@ -97,6 +102,7 @@ export default class Conversation extends Component {
         <div className='invitation-actions'>
           <p>You have declined chat invitation</p>
           <FlatButton label="Accept" primary={true} onClick={this.acceptInvitation.bind(this)} />
+          <FlatButton label="Hide" onClick={() => this.hideChat(chat._id)}/>
         </div>
       );
     }
