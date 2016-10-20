@@ -1,4 +1,4 @@
-import { Meteor } from 'meteor/meteor';
+  
 import { FlowRouter } from 'meteor/kadira:flow-router';
 
 import React, { Component, PropTypes } from 'react';
@@ -19,7 +19,7 @@ export default class CreateConversation extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { open: false };
+    this.state = { open: false, selectedUserId: undefined};
   }
 
   handleModalOpen() {
@@ -27,21 +27,29 @@ export default class CreateConversation extends Component {
   }
 
   handleModalClose() {
-    this.setState({open: false});
+    this.setState({open: false, selectedUserId: undefined});
+  }
+
+  selectUser(userId) {
+    this.setState({selectedUserId: userId});
   }
 
   newChat(userId) {
-    const chat = Chats.findOne({ userIds: { $all: [this.props.currentUser._id, userId] } });
+    if (userId) {
+      const chat = Chats.findOne({ userIds: { $all: [this.props.currentUser._id, userId] } });
 
-    if (chat) {
-      this.handleModalClose();
-      return FlowRouter.go('chat', { chatId: chat._id })
+      if (chat) {
+        this.handleModalClose();
+        return FlowRouter.go('chat', { chatId: chat._id })
+      }
+
+      Meteor.call('newChat', userId, (err, chatId) => {
+        this.handleModalClose();
+        FlowRouter.go('chat', { chatId })
+      });
+    } else {
+      //todo: error message
     }
-
-    Meteor.call('newChat', userId, (err, chatId) => {
-      this.handleModalClose();
-      FlowRouter.go('chat', { chatId })
-    });
   }
 
   renderUsers() {
@@ -49,17 +57,17 @@ export default class CreateConversation extends Component {
       return (
         <ListItem
           key={user._id}
+          className={this.state.selectedUserId === user._id ? 'user-selected' : ''}
           primaryText={
             <span>
               <b>{user.username}</b>
-              <i> Hey there!</i>
             </span>
           }
           leftAvatar={<Avatar src={user.avatar || '/images/default-avatar.jpg'} />}
           rightIcon={
             <CommunicationChatBubble/>
           }
-          onTouchTap={() => this.newChat(user._id) }
+          onTouchTap={() => this.selectUser(user._id)}
         />
       )
     });
@@ -78,8 +86,13 @@ export default class CreateConversation extends Component {
 
     const actions = [
       <FlatButton
-        label="Cancel"
+        label="Send"
         primary={true}
+        onTouchTap={() => this.newChat(this.state.selectedUserId)}
+      />,
+      <FlatButton
+        label="Cancel"
+        primary={false}
         onTouchTap={this.handleModalClose.bind(this)}
       />,
     ];
