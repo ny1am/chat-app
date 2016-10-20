@@ -94,7 +94,7 @@ Meteor.methods({
       throw new Meteor.Error('not-logged-in', 'Must be logged to create a chat.');
     }
     check(chatId, String);
-    let chat = Chats.findOne({_id: chatId, 'users.userId': userId, 'users.status': 'none'});
+    let chat = Chats.findOne({_id: chatId, 'users.userId': userId, 'users.status': {$in: ['none', 'declined']}});
     if (chat) {
       chat.users.forEach(user => {user.status = 'success'});
       Chats.update(chat._id, chat);

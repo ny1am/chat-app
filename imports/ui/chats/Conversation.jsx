@@ -92,6 +92,13 @@ export default class Conversation extends Component {
           <FlatButton label="Decline" onClick={this.declineInvitation.bind(this)}/>
         </div>
       );
+    } else if (chat.getStatus() === 'declined') {
+      return (
+        <div className='invitation-actions'>
+          <p>You have declined chat invitation</p>
+          <FlatButton label="Accept" primary={true} onClick={this.acceptInvitation.bind(this)} />
+        </div>
+      );
     }
   }
 
