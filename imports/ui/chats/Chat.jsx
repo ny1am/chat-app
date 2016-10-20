@@ -13,8 +13,9 @@ export default class Chat extends Component {
 
   hideChat(chatId) {
     Meteor.call('hideChat', chatId);
-    //todo: fix this
-    return FlowRouter.go('chat');
+    if (this.props.isActive) {
+      return FlowRouter.go('chat');
+    }
   }
 
   renderSubtitle() {
