@@ -32,6 +32,7 @@ export default class Conversation extends Component {
 
   declineInvitation() {
     Meteor.call('declineInvitation', FlowRouter.current().params.chatId);
+    return FlowRouter.go('chat');
   }
 
   renderMessages() {

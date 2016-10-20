@@ -111,6 +111,7 @@ Meteor.methods({
       chat.users.forEach(user => {
         if (user.userId === userId) {
           user.status = 'declined';
+          user.hidden = true;
         }
       });
       Chats.update(chat._id, chat);
