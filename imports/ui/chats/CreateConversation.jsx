@@ -11,6 +11,7 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import CommunicationChatBubble from 'material-ui/svg-icons/communication/chat-bubble';
 import Avatar from 'material-ui/Avatar';
 import {List, ListItem} from 'material-ui/List';
+import TextField from 'material-ui/TextField';
 
 // API
 import {Chats} from '/imports/api/chats.js';
@@ -19,7 +20,7 @@ export default class CreateConversation extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { open: false, selectedUserId: undefined};
+    this.state = { open: false, selectedUserId: undefined, helloMessage: 'Hey there!'};
   }
 
   handleModalOpen() {
@@ -27,15 +28,19 @@ export default class CreateConversation extends Component {
   }
 
   handleModalClose() {
-    this.setState({open: false, selectedUserId: undefined});
+    this.setState({open: false, selectedUserId: undefined, helloMessage: 'Hey there!'});
   }
 
   selectUser(userId) {
     this.setState({selectedUserId: userId});
   }
 
+  messageChange(e) {
+    this.setState({helloMessage: e.target.value});
+  }
+
   newChat(userId) {
-    if (userId) {
+    if (userId && this.state.helloMessage) {
       const chat = Chats.findOne({ userIds: { $all: [this.props.currentUser._id, userId] } });
 
       if (chat) {
@@ -43,7 +48,7 @@ export default class CreateConversation extends Component {
         return FlowRouter.go('chat', { chatId: chat._id })
       }
 
-      Meteor.call('newChat', userId, (err, chatId) => {
+      Meteor.call('newChat', userId, this.state.helloMessage, (err, chatId) => {
         this.handleModalClose();
         FlowRouter.go('chat', { chatId })
       });
@@ -116,6 +121,17 @@ export default class CreateConversation extends Component {
           <List>
             { this.renderUsers() }
           </List>
+          <div>
+            <TextField
+              floatingLabelText="Hello message"
+              hintText="Type your message here"
+              multiLine={true}
+              value={this.state.helloMessage}
+              onChange={this.messageChange.bind(this)}
+              rows={1}
+              rowsMax={4}
+            />
+          </div>
         </Dialog>
       </div>
     )

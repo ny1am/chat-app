@@ -29,12 +29,13 @@ Meteor.methods({
 
     return messageId;
   },
-  newChat(otherId) {
+  newChat(otherId, messageText) {
     if (!this.userId) {
       throw new Meteor.Error('not-logged-in', 'Must be logged to create a chat.');
     }
   
     check(otherId, String);
+    check(messageText, String);
     const otherUser = Meteor.users.findOne(otherId);
     const currentUser = Meteor.users.findOne(this.userId);
 
@@ -76,7 +77,7 @@ Meteor.methods({
     const chatId = Chats.insert(chat);
 
     const message = {
-      text: 'Hey there!',
+      text: messageText,
       type: 'initial',
       chatId,
       timestamp: new Date(),
