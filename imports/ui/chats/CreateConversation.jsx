@@ -19,8 +19,7 @@ import {Chats} from '/imports/api/chats.js';
 export default class CreateConversation extends Component {
   constructor(props) {
     super(props);
-
-    this.state = { open: false, selectedUserId: undefined, helloMessage: 'Hey there!'};
+    this.state = { open: false, selectedUserId: undefined, messageText: 'Hey there!'};
   }
 
   handleModalOpen() {
@@ -28,7 +27,7 @@ export default class CreateConversation extends Component {
   }
 
   handleModalClose() {
-    this.setState({open: false, selectedUserId: undefined, helloMessage: 'Hey there!'});
+    this.setState({open: false, selectedUserId: undefined, messageText: 'Hey there!'});
   }
 
   selectUser(userId) {
@@ -36,11 +35,11 @@ export default class CreateConversation extends Component {
   }
 
   messageChange(e) {
-    this.setState({helloMessage: e.target.value});
+    this.setState({messageText: e.target.value});
   }
 
   newChat(userId) {
-    if (userId && this.state.helloMessage) {
+    if (userId && this.state.messageText) {
       const chat = Chats.findOne({ userIds: { $all: [this.props.currentUser._id, userId] } });
 
       if (chat) {
@@ -48,7 +47,7 @@ export default class CreateConversation extends Component {
         return FlowRouter.go('chat', { chatId: chat._id })
       }
 
-      Meteor.call('newChat', userId, this.state.helloMessage, (err, chatId) => {
+      Meteor.call('newChat', userId, this.state.messageText, (err, chatId) => {
         this.handleModalClose();
         FlowRouter.go('chat', { chatId })
       });
@@ -112,7 +111,7 @@ export default class CreateConversation extends Component {
         </FloatingActionButton>
 
         <Dialog
-          title="New Chat"
+          title="New message"
           actions={actions}
           modal={false}
           open={this.state.open}
@@ -123,10 +122,10 @@ export default class CreateConversation extends Component {
           </List>
           <div>
             <TextField
-              floatingLabelText="Hello message"
+              floatingLabelText="Message"
               hintText="Type your message here"
               multiLine={true}
-              value={this.state.helloMessage}
+              value={this.state.messageText}
               onChange={this.messageChange.bind(this)}
               rows={1}
               rowsMax={4}

@@ -10,6 +10,10 @@ export default function Message ({message, currentUser}) {
   const messageClass = currentUser._id == message.userId ? 'message-mine' : 'message-other';
   const messageUser = Meteor.users.findOne(message.userId);
 
+  function process(text) {
+    return text.replace(/((http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?)/g,'<a href="$1">$1</a>');
+  }
+
   if (message.type === 'initial') {
     return (
       <div className='message-initial'>
@@ -17,7 +21,9 @@ export default function Message ({message, currentUser}) {
           {time} {messageUser.username} created this conversation.
         </div>
         <p>
-          {message.text}
+          <div className='message-body'>
+            {message.text}
+          </div>
         </p>
       </div>
     );
@@ -25,7 +31,7 @@ export default function Message ({message, currentUser}) {
     return (
       <div className={`message ${messageClass}`}>
         <p className='message-text'>
-          {message.text}
+          <span className='message-body' dangerouslySetInnerHTML={{__html: process(message.text)}} />
           <span className='message-timestamp'>{time}</span>
         </p>
       </div>
