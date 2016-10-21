@@ -5,6 +5,16 @@ import { check } from 'meteor/check';
 import { Chats } from '/imports/api/chats.js';
 import { Messages } from '/imports/api/messages.js';
 
+function showHideChat(chat, currentUserId, hidden) {
+  chat.users.forEach(user => {
+    if (user.userId === currentUserId) {
+      user.hidden = hidden;
+    }
+  });
+  Chats.update(chat._id, chat);
+  return chat;
+}
+
 Meteor.methods({
   newMessage(message) {
     if (!this.userId) {
@@ -43,16 +53,9 @@ Meteor.methods({
       throw new Meteor.Error('user-not-exists', 'Chat\'s user not exists');
     }
 
-    const dbChat = Chats.findOne({$and: [{'users.userId': currentUser._id}, {'users.userId': otherUser._id}]});
+    let dbChat = Chats.findOne({$and: [{'users.userId': currentUser._id}, {'users.userId': otherUser._id}]});
     if (dbChat) {
-      //todo duplication
-      const userId = this.userId;
-      dbChat.users.forEach(function(user) {
-        if (user.userId === userId) {
-          user.hidden = false;
-        }
-      });
-      Chats.update(dbChat._id, dbChat);
+      dbChat = showHideChat(dbChat, this.userId, false);
       return dbChat._id;
     }
 
@@ -125,11 +128,6 @@ Meteor.methods({
     }
     check(chatId, String);
     let chat = Chats.findOne({_id: chatId, 'users.userId': userId});
-    chat.users.forEach(function(user) {
-      if (user.userId === userId) {
-        user.hidden = true;
-      }
-    });
-    Chats.update(chat._id, chat);
+    showHideChat(chat, userId, true);
   },
 });
