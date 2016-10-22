@@ -88,6 +88,10 @@ export default class CreateConversation extends Component {
       margin: '0 auto',
     };
 
+    const fieldStyles = {
+      width: '100%'
+    };
+
     const actions = [
       <FlatButton
         label="Send"
@@ -120,17 +124,16 @@ export default class CreateConversation extends Component {
           <List>
             { this.renderUsers() }
           </List>
-          <div>
-            <TextField
-              floatingLabelText="Message"
-              hintText="Type your message here"
-              multiLine={true}
-              value={this.state.messageText}
-              onChange={this.messageChange.bind(this)}
-              rows={1}
-              rowsMax={4}
-            />
-          </div>
+          <TextField
+            floatingLabelText="Message"
+            hintText="Type your message here"
+            style={fieldStyles}
+            multiLine={true}
+            value={this.state.messageText}
+            onChange={this.messageChange.bind(this)}
+            rows={1}
+            rowsMax={4}
+          />
         </Dialog>
       </div>
     )
