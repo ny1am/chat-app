@@ -21,9 +21,9 @@ export default function Message ({message, currentUser}) {
           {time} {messageUser.username} created this conversation.
         </div>
         <p>
-          <div className='message-body'>
+          <span className='message-body'>
             {message.text}
-          </div>
+          </span>
         </p>
       </div>
     );
