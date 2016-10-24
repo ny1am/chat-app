@@ -4,7 +4,7 @@ import { createContainer } from 'meteor/react-meteor-data';
 import Chat from './Chat.jsx';
 
 // API
-import { Chats } from '/imports/api/chats.js';
+import Chats from '/imports/api/chats.js';
 
 export default class Conversations extends Component {
 

@@ -25,4 +25,4 @@ Collection.find({'users.hidden': {$exists: false}}).fetch().forEach(function(cha
 	}
 });
 
-export const Chats = Collection;
+export default Chats = Collection;

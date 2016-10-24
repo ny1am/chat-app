@@ -8,7 +8,7 @@ import Conversation from '/imports/ui/chats/Conversation.jsx';
 import CreateConversation from '/imports/ui/chats/CreateConversation.jsx';
 
 // API
-import { Chats } from '/imports/api/chats.js';
+import Chats from '/imports/api/chats.js';
 import { Messages } from '/imports/api/messages.js';
 
 export default class ChatPage extends Component {

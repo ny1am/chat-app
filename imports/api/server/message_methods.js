@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 
 // API
-import { Chats } from '/imports/api/chats.js';
+import Chats from '/imports/api/chats.js';
 import { Messages } from '/imports/api/messages.js';
 
 function showHideChat(chat, currentUserId, hidden) {

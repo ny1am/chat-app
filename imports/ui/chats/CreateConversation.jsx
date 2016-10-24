@@ -14,7 +14,7 @@ import {List, ListItem} from 'material-ui/List';
 import TextField from 'material-ui/TextField';
 
 // API
-import {Chats} from '/imports/api/chats.js';
+import Chats from '/imports/api/chats.js';
 
 export default class CreateConversation extends Component {
   constructor(props) {
