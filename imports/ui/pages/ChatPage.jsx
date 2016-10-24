@@ -9,7 +9,7 @@ import CreateConversation from '/imports/ui/chats/CreateConversation.jsx';
 
 // API
 import Chats from '/imports/api/chats.js';
-import { Messages } from '/imports/api/messages.js';
+import Messages from '/imports/api/messages.js';
 
 export default class ChatPage extends Component {
 	render() {

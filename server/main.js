@@ -2,7 +2,7 @@ import Moment from 'moment';
 import { Meteor } from 'meteor/meteor';
 
 import Chats from '/imports/api/chats.js';
-import { Messages } from '/imports/api/messages.js';
+import Messages from '/imports/api/messages.js';
 
 import '/imports/api/server/message_methods.js';
 
