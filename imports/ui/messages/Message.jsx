@@ -3,7 +3,7 @@ import React, {PropTypes} from 'react';
 import { Meteor } from 'meteor/meteor';
 
 // Helpers
-import { getTime } from '/imports/ui/shared/getTime.js';
+import getTime from '/imports/ui/shared/getTime.js';
 
 export default function Message ({message, currentUser}) {
   const time = getTime(message.timestamp);

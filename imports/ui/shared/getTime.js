@@ -1,6 +1,6 @@
 import Moment from 'moment';
 
-export function getTime(timestamp) {
+export default function getTime(timestamp) {
   if (!timestamp) return;
 
   return Moment(timestamp).calendar(null, {

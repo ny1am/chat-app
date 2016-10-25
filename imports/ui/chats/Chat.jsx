@@ -7,7 +7,7 @@ import FlatButton from 'material-ui/FlatButton';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 
 // Helpers
-import { getTime } from '/imports/ui/shared/getTime.js';
+import getTime from '/imports/ui/shared/getTime.js';
 
 export default class Chat extends Component {
 

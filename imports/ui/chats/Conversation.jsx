@@ -10,7 +10,7 @@ import TextField from 'material-ui/TextField';
 import Message from '/imports/ui/messages/Message.jsx';
 
 // Helpers
-import { getTime } from '/imports/ui/shared/getTime.js';
+import getTime from '/imports/ui/shared/getTime.js';
 
 export default class Conversation extends Component {
 
